@@ -11,13 +11,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import view.BlockDisplay;
+import model.Block;
 import control.Command;
 import control.DownCommand;
 import control.LeftCommand;
 import control.RightCommand;
 import control.UpCommand;
-import view.BlockDisplay;
-import model.Block;
+import control.BlockPresenter;
 
 public class Main extends JFrame {
 
@@ -28,6 +29,7 @@ public class Main extends JFrame {
     private Block block;
     private BlockDisplay blockDisplay;
     private HashMap<String, Command> commands;
+    private BlockPresenter blockPresenter;
     
     public Main() {
         this.setTitle("Block shifter");
@@ -41,14 +43,13 @@ public class Main extends JFrame {
     
     private void execute(){
         this.block = new Block(4,4);
-        this.blockDisplay.display(block);
-        this.block.register(blockDisplay);
+        this.blockPresenter = new BlockPresenter(block, blockDisplay);
         this.commands = createCommands();
         this.setVisible(true);
     }
     
     private JPanel blockPanel() {
-        BlockPanel panel = new BlockPanel();
+        BlockPanel panel = new BlockPanel(Block.MAX, BlockPresenter.SIZE);
         this.blockDisplay = panel;
         return panel;
     }

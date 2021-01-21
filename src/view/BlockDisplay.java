@@ -1,8 +1,12 @@
 
 package view;
 
-import model.Block;
-
-public interface BlockDisplay extends Block.Observer{
-    void display(Block block);
+public interface BlockDisplay{
+    
+    void paintBlock(int x, int y);
+    void on(Moved moved);
+    
+    interface Moved {
+        void to(int x, int y);
+    }
 }

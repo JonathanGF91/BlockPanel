@@ -53,6 +53,12 @@ public class Block {
         y++;
         changed();
     }
+    
+     public void moveTo(int x, int y) {
+        this.x = x;
+        this.y = y;
+        changed();
+    }
 
     public void register(Observer observer) {
         observers.add(observer);
